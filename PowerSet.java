@@ -4,9 +4,10 @@ public class PowerSet<T> {
 
   //Constructor
   public PowerSet(T[] elements) {
-    //Creating the power set
+    //Creating the power set 
     int loop = (int)Math.pow(2, elements.length);
     String s = "";
+    set = (Set<T>[])new Set[loop]; //Creating the size of the set
     for (int i = 0; i < loop; i++) { //Looping 2^elements times 
       s = Integer.toBinaryString(i); //Setting s to a binary value 
       //Making s have the correct number of digits in it
@@ -14,16 +15,25 @@ public class PowerSet<T> {
         s = "0" + s; //Padding the value with a 0
       }
       //Now with the correct value for the binary number we can add the corresponding values from the array
-      Set<T> tempSet = new Set<T>();
+      Set<T> tempSet = new Set<T>(); //Resetting amd creating a new tempSet
       for (int j = 0; j < s.length(); j++) {
         if (s.charAt(j) == '1') {
           tempSet.add(elements[j]); //Putting all of the elements from this set in a temporary set
         }
       }
-      //Appending the tempSet to the 
-      
-      
+      //Appending the tempSet to the main set
+      set[i] = tempSet;
     }
+  }
+
+
+  public int getLength() {
+    return set.length;
+  }
+
+  
+  public Set<T> getSet(int i) {
+    return set[i];
   }
   
 }
