@@ -14,6 +14,7 @@ public class Counter {
     total += hisKnobs();
     total += pairs();
     total += runs();
+    total += fifteen();
 
     return total;
   }
@@ -127,11 +128,43 @@ public class Counter {
   
   private int fifteen() {
     int points = 0;
+    int val = 0;
     Set<Card> tempSet = new Set<Card>();
 
+    for (int i = 0; i < cardps.getLength(); i++) { //Loooing through every set
+      tempSet = cardps.getSet(i); //Setting those sets to temp set
+      val = 0; //Resetting val
+      for (int j = 0; j < tempSet.getLength(); j++) { //Looping through the values of the set
+        val += tempSet.getElement(j).getFifteenRank();//Getting the value of each card
+      }
+      if (val == 15) { //If the values add up to 15 points add 2 points
+        points += 2;
+      }     
+    }
+    return points;
+  }
+
+  private int flush() { //Not finished yet
+    int points = 0;
+    Set<Card> tempSet = new Set<Card>();
+    boolean containsStarter = true;
+
     for (int i = 0; i < cardps.getLength(); i++) {
-      tempSet = cardps.getSet(i);
-      
+      tempSet = cardps.getSet(i); //Looping through the temp set
+
+      if (tempSet.getLength() == 4) {
+        String suit = tempSet.getElement(3).getSuit();
+        for (int j = 0; j < tempSet.getLength(); j++) { //Looping through all 4 of the cards in the set to make sure none of them contain 
+          if (tempSet.getElement(i).getLabel().equals(starter.getLabel()) && tempSet.getElement(i).getSuit().equals(starter.getSuit())) {
+            break; //If the set contains the starter break
+          }
+          containsStarter = false; //Will only set to false if there is no starter
+        }       
+      }
+
+      if (containsStarter == false) { //If the set of 4 doesnt have the starter
+        for (int i)
+      }
       
     }
   }
