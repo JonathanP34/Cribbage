@@ -118,7 +118,7 @@ public class Set<T> {
         System.out.println(set.getLength());
         System.out.println(set.toString());
         System.out.println(set.contains(6));
-        System.out.println(set.getElement(4)); //doesnt run
+        System.out.println(set.getElement(4));
     }
 
 }
